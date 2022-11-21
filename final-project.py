@@ -36,7 +36,6 @@ def is_choice(choose):
 def addMonths(time,start):
     return ((start + time) % 12) +1
 
-    #input works only after 2 tries of getting it right....
 
 def addTime(time):
     this_time = time.lower()
@@ -51,7 +50,6 @@ def addTime(time):
         this_time = input()
         ismonth = monthRegex.search(this_time)
         isyear = yearRegex.search(this_time)
-        isTime = timeRegex.search(this_time)
     num, sect = this_time.split()
     num = int(num)
     is_months = False
@@ -67,23 +65,6 @@ def addTime(time):
         dates["start"]["year"] = int(dates["start"]["year"])+ num
     return is_months
 
- 
-""" def addTime(num, sect):
-    
-    monthRegex = re.compile(r'month(s)?', re.I)
-    yearRegex = re.compile(r'year(s)?',re.I)
-    ismonth = monthRegex.search(sect)
-    isyear = yearRegex.search(sect)
-    if ismonth:
-        dates["start"]["month"] = int(addMonths(num, dates["start"]["month"]))
-        if num > 12:
-            years = (num - (num%12))/12
-            dates["start"]["year"] = dates["start"]["year"]+ int(years)
-
-    elif isyear:
-        dates["start"]["year"] = dates["start"]["year"]+num
-
- """
 
 dates = {"start":{"month":10,"year":2017},"proposal":{"month":10,"year":2017}}
 months = {1:"January",2:"February",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
@@ -311,7 +292,7 @@ def game():
         elif (yo or mo) and not (mo and yo):
             print(f'{characters["interest"]}: I know you\'re trying. I shouldn\'t have to ask this, but, Can you just try a little more?')
         elif not mo and not yo:
-            print("You're showing me that you don't care right now. I'm done with this.\n")
+            print(f'{characters["interest"]}: You\'re showing me that you don\'t care right now. I\'m done with this.\n')
             print("\n THIS was the last possible bad ending. Pay more attention next time.")
             print("Y O U   L O S E")
             return
@@ -320,6 +301,8 @@ def game():
             return 
         end = "good"
         
+    print("\n.....Press 'return' or 'enter' to continue:....")
+    any = input()
     addTime("6 months")
 
     next_chapter(4)
@@ -341,4 +324,3 @@ def game():
     print("\nThank you for playing!")
     
 game() 
-
